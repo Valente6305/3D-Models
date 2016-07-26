@@ -1,5 +1,5 @@
 function loop_file, st=st, file=file, dir=dir, freq=freq, new=new
-;  Usage: 
+;  Usage: # quero ver as modificações
 ;  name=loop_file(st=st) ===> simple return a name 
 ;  ttt=loop_file(file=file, st=st) --> then= st contain a structure 
 ipar=0
