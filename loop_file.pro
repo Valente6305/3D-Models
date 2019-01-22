@@ -1,5 +1,5 @@
 function loop_file, st=st, file=file, dir=dir, freq=freq, new=new
-;  Usage: # quero ver as modificações
+;  Usage: 
 ;  name=loop_file(st=st) ===> simple return a name 
 ;  ttt=loop_file(file=file, st=st) --> then= st contain a structure 
 ipar=0
@@ -48,7 +48,7 @@ if temst and temfile eq 0 then  begin
    ;v[16]= B    (maximum B in Gauss)
    ;v[17]= code  (TBD  = initially equal 0)
    if n_elements(st) eq 0 then begin   
-      st={n:16,phi:45.,B_lat:30.0,Az:15.0,in:0.0,assim:0.0,ie:0.34,ip:0,r_arc:0.02,$
+      st={n:32,phi:45.,B_lat:30.0,Az:15.0,in:0.0,assim:0.0,ie:0.34,ip:0,r_arc:0.02,$
           foot_s:0.02,h_arc:0.01,Nel:2.e7,Np:1.e9,T:1.e8,En:[10.,100000], $
           delta:2.7,m:0,B:1000.,code:0, freq:[2.5,7.0]*1.e9}
    endif
@@ -92,7 +92,6 @@ if temst and temfile eq 0 then  begin
                 tx[18],v[18],tx[19],v[19],tx[20],format=fmt)
    bw=byte(novonome)
    pp=where(bw eq 32)
-   
    if pp[0] ne -1 then bw[pp]=48
    novonome=string(bw)
 
@@ -153,10 +152,8 @@ if keyword_set(file) then begin
    ost.phi=float(strmid(file,pp+7,3))
    ost.B_lat=float(strmid(file,pp+12,3))
    ost.Az=float(strmid(file,pp+17,3))
-   if strmid(file,pp+22,2)  eq '--' then ost.in=float(-strmid(file,pp+24,1)) else ost.in=float(strmid(file,pp+22,3))
-   if strmid(file,pp+27,2) eq '--' then ost.assim=float(-strmid(file,pp+29,1)) else  ost.assim=float(strmid(file,pp+27,3))
-   ost.in=float(ost.in)
-   ost.assim=float(ost.assim)
+   ost.in=float(strmid(file,pp+23,3))
+   ost.assim=float(strmid(file,pp+28,3))
    ost.ie=float(strmid(file,pp+32,3))/100.
    ost.ip=fix(strmid(file,pp+37,1))
    ost.r_arc=float(strmid(file,pp+39,3))/1000.
